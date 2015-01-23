@@ -1,0 +1,134 @@
+@font-face {
+    font-family: 'Roboto';
+    src:  url('../fonts/Roboto-Regular.ttf')  format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Black';
+    src:  url('../fonts/Roboto-Black.ttf')  format('truetype');
+}
+
+body {
+    height: 460px;
+    width: 300px;
+}
+
+body:after {
+    content: 'Collecting data...';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    line-height: 400px;
+    z-index: 1;
+}
+
+.view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    background: #fff;
+    z-index: 2;
+    overflow: hidden;
+    opacity: 0;
+    z-index: 1;
+}
+
+.default h4 {
+    color: #e0e0e0;
+    font-size: 1.5em;
+}
+
+.header {
+    background: #2196F3;
+    overflow: hidden;
+    color: #fafafa;
+    padding: 20px;
+    margin-bottom: 5px;
+}
+
+.header h3 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin: 0.5em 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+.metrics h1 {
+    font-size: 3.0rem;
+    line-height: 4.62rem;
+    margin: 0;
+    padding-left: 16px;
+    color: #616161;
+}
+
+.header p {
+    margin-top: -0.5em;
+    color: #e0e0e0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}
+
+.refresh-page {
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    cursor: pointer;
+}
+
+.mdi-action-trending-up {
+    color: #c62828;
+}
+
+.mdi-action-trending-down {
+    color: #388e3c;
+}
+
+.remove-page {
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.metrics-chart {
+    width: 300px;
+    height: 165px;
+}
+
+.metrics-details {
+    margin: 5px 0 10px;
+}
+
+svg > text {
+    display: none;
+}
+
+.button-group {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
+.is-active {
+    opacity: 1.0;
+    transition: opacity 0.3s ease-out;
+    z-index: 2;
+}
