@@ -6,7 +6,7 @@
     var firstPaint = window.chrome.loadTimes().firstPaintTime * 1000;
 
     // Time to first paint
-    api.firstPaintTime = Math.round(0, firstPaint - (window.chrome.loadTimes().startLoadTime*1000));
+    api.firstPaintTime = Math.max(0, Math.round(firstPaint - (window.chrome.loadTimes().startLoadTime*1000)));
     // Total time from start to load
     api.loadTime = Math.max(0, timing.loadEventEnd - timing.navigationStart);
     // Time spent constructing the DOM tree

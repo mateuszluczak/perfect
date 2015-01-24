@@ -25,6 +25,12 @@
                     var colorThief = new ColorThief();
                     var color = colorThief.getColor(img[0], 1);
 
+                    if (color[0] > 220 && color[0] > 220 && color[2] > 220) {
+                        color[0] = 33;
+                        color[1] = 150;
+                        color[2] = 240;
+                    }
+
                     App.page = {
                         url: tab.url.replace(/#.*$/, ''),
                         title: tab.title,
