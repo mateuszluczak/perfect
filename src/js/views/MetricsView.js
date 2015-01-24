@@ -1,10 +1,11 @@
 var MetricsView = (function () {
     var template = [
-        "<div class='header'>",
+        "<div class='header' style='background-color: {{color}}'>",
             "<h3 class='page-title'>{{title}}</h3>",
             "<p class='page-subtitle'>{{url}}</p>",
+            "<a class='make-screenshot' title='Make screenshot'><i class='mdi-image-photo-camera'></i></a>",
             "<a class='refresh-page' title='Measure again'><i class='mdi-navigation-refresh'></i></a>",
-            "<a class='remove-page' title='Delete metrics'></i><i class='mdi-action-highlight-remove'></i></a>",
+            "<a class='remove-page' title='Delete metrics'></i><i class='mdi-navigation-close'></i></a>",
         "</div>",
         "<h1><i class='mdi-image-timer' title='Load time'></i> {{results.loadTime}}ms </h1>",
         "<div class='metrics-details'>",
@@ -41,6 +42,8 @@ var MetricsView = (function () {
     function MetricsView($el, $scope) {
         View.call(this, $el, $scope);
 
+        console.log($scope.page.color[0]);
+
         this.bindUIEvents();
 
         this.updatePage();
@@ -49,6 +52,19 @@ var MetricsView = (function () {
     }
 
     MetricsView.prototype = Object.create(View.prototype);
+
+    MetricsView.prototype.makeScreenshot = function() {
+        var self = this;
+
+        html2canvas(document.body, {
+            onrendered: function(canvas) {
+                var link = document.createElement('a');
+                link.download = self.$scope.page.url + '.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            }
+        });
+    };
 
     MetricsView.prototype.removePage = function() {
         _.remove(this.$scope.pages, function(page) {
@@ -115,20 +131,13 @@ var MetricsView = (function () {
 
     MetricsView.prototype.bindUIEvents = function () {
         this.$el.one('click', '.refresh-page', this.refreshPage.bind(this));
+        this.$el.one('click', '.make-screenshot', this.makeScreenshot.bind(this));
         this.$el.one('click', '.remove-page', this.removePage.bind(this));
     };
 
     MetricsView.prototype.render = function () {
         var $scope = this.$scope;
-
         var mean = this.getMean();
-        var chartData = _.clone($scope.page.record);
-        var last = _.last($scope.page.record);
-        chartData.pop();
-        chartData.push({
-            y: last,
-            color: '#81d4fa'
-        });
 
         this.$el.html(Mustache.to_html(template, $scope.page));
         this.showTrend();
@@ -176,7 +185,8 @@ var MetricsView = (function () {
             },
             series: [{
                 name: 'Load Time',
-                data: chartData
+                color: $scope.page.color,
+                data: $scope.page.record
             }]
         });
 

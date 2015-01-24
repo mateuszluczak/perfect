@@ -21,8 +21,12 @@ body:after {
     right: 0;
     bottom: 0;
     text-align: center;
-    line-height: 400px;
+    line-height: 460px;
     z-index: 1;
+}
+
+#app {
+    height: 460px;
 }
 
 .view {
@@ -72,20 +76,10 @@ body:after {
 
 .header p {
     margin-top: -0.5em;
-    color: #e0e0e0;
     white-space: nowrap;
     overflow: hidden;
     width: 100%;
     text-overflow: ellipsis;
-}
-
-.refresh-page {
-    color: #fff;
-    font-size: 1.5rem;
-    position: absolute;
-    top: 5px;
-    right: 35px;
-    cursor: pointer;
 }
 
 .mdi-action-trending-up {
@@ -96,13 +90,24 @@ body:after {
     color: #388e3c;
 }
 
-.remove-page {
+.make-screenshot,
+.remove-page,
+.refresh-page {
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     position: absolute;
-    top: 5px;
-    right: 10px;
+    top: 2px;
+    right: 47px;
     cursor: pointer;
+    /*text-shadow: 0 1px 0 rgba(255,255,255,0.4);*/
+}
+
+.refresh-page {
+    right: 25px;
+}
+
+.remove-page {
+    right: 5px;
 }
 
 .metrics-chart {

@@ -20,11 +20,18 @@
             var dfd = new $.Deferred();
 
             chrome.tabs.getSelected(null, function(tab) {
-                App.page = {
-                    url: tab.url,
-                    title: tab.title
-                };
-                dfd.resolve();
+                var img = $('<img>').attr('src', 'chrome://favicon/' + tab.url.replace(/#.*$/, ''));
+                setTimeout(function() {
+                    var colorThief = new ColorThief();
+                    var color = colorThief.getColor(img[0], 1);
+
+                    App.page = {
+                        url: tab.url.replace(/#.*$/, ''),
+                        title: tab.title,
+                        color: 'rgb(' + color[0] + ',' + color[1] + ',' + color[2] + ')'
+                    };
+                    dfd.resolve();
+                }, 1500);
             });
 
             return dfd.promise();

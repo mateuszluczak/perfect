@@ -15,6 +15,7 @@
     "storage",
     "activeTab",
     "tabs",
+    "chrome://favicon/*",
     "*://*/*"
   ]
 }
