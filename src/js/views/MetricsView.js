@@ -33,8 +33,6 @@ var MetricsView = (function () {
                     "<td>Time to first Paint</td>",
                     "<td>{{results.firstPaintTime}}ms</td>",
                 "</tr>",
-
-
             "</table>",
         "</div>",
         "<div class='metrics-chart'></div>"
