@@ -73,6 +73,14 @@ var MetricsView = (function () {
         window.close();
     };
 
+    MetricsView.prototype.getMean = function() {
+        var sum =_.reduce(this.$scope.page.record, function(a, b) {
+            return a + b;
+        }, 0);
+
+        return sum / this.$scope.page.record.length;
+    };
+
     MetricsView.prototype.showTrend = function() {
         if (this.$scope.page.record.length < 2) {
             return false;
@@ -115,6 +123,7 @@ var MetricsView = (function () {
     MetricsView.prototype.render = function () {
         var $scope = this.$scope;
 
+        var mean = this.getMean();
         var chartData = _.clone($scope.page.record);
         var last = _.last($scope.page.record);
         chartData.pop();
@@ -136,7 +145,7 @@ var MetricsView = (function () {
                     text: null
                 },
                 labels: {
-                    enabled:false,
+                    enabled: false,
                     y : 20,
                     rotation: -45,
                     align: 'right'
@@ -148,7 +157,16 @@ var MetricsView = (function () {
                 },
                 labels: {
                     enabled: false
-                }
+                },
+                plotLines: [{
+                    color: '#bdbdbd',
+                    value: mean, // Insert your average here
+                    width: '1',
+                    label : {
+                        text : 'Mean: ' + mean.toFixed(0) + 'ms'
+                    },
+                    dashStyle: 'ShortDash'
+                }]
             },
             legend: {
                 enabled: false

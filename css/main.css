@@ -115,6 +115,12 @@ body:after {
 }
 
 svg > text {
+    font-family: 'Roboto';
+    font-size: 11px;
+    fill: #bdbdbd;
+}
+
+svg > text:last-of-type {
     display: none;
 }
 
