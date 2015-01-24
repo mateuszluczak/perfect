@@ -108,6 +108,19 @@ body:after {
 .metrics-chart {
     width: 300px;
     height: 165px;
+    overflow: hidden;
+    position: relative;
+}
+
+.metrics-chart:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    height: 14px;
+    z-index: 1000;
 }
 
 .metrics-details {
